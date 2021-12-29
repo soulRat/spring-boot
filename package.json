@@ -1,0 +1,7 @@
+{
+  "name": "spring-boot",
+  "version": "1.0.0",
+  "devDependencies": {
+    "standard-version-updater-pom": "^1.2.2"
+  }
+}

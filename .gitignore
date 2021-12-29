@@ -62,6 +62,7 @@ tmp/
 /dist/
 /nbdist/
 /.nb-gradle/
+node_modules/
 
 **/src/main/resources/application-local.properties
 **/src/main/resources/application-local.yaml
