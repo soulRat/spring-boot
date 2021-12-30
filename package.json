@@ -1,5 +1,5 @@
 {
   "devDependencies": {
-    "xmlbuilder2": "^2.4.1"
+    "@soul-rat/standard-version-updater-pom": "^1.1.0"
   }
 }

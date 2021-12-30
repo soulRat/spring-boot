@@ -1,5 +1,5 @@
 // .versionrc.js
-const xmlUpdater = require('./index');
+const xmlUpdater = require('@soul-rat/standard-version-updater-pom');
 
 const xmlTracker1 = {
     filename: 'pom.xml',
