@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0-beta.0](https://github.com/soulRat/spring-boot/compare/v1.0.0...v1.1.0-beta.0) (2021-12-30)
+
+
+### Features
+
+* 修改pom文件 ([8a6c961](https://github.com/soulRat/spring-boot/commit/8a6c961a2495d7d4d0aa18b47953083f1fd3876d))
+
 ## 1.0.0 (2021-12-30)
 
 

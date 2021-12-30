@@ -1,112 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.6</version>
-        <relativePath/>
-    </parent>
-
-    <name>spring-boot</name>
-
-    <groupId>com.soul.rat</groupId>
-    <artifactId>spring-boot</artifactId>
-    <version>1.0.0</version>
-    <packaging>pom</packaging>
-
-    <properties>
-        <project.real.name>spring-boot</project.real.name>
-        <project.real.version>1.0.0</project.real.version>
-        <java.version>8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.version>3.8.1</maven.compiler.version>
-        <maven.resources.version>3.2.0</maven.resources.version>
-        <apache.commons-lang3.version>3.12.0</apache.commons-lang3.version>
-        <apache.httpclient.version>4.5.13</apache.httpclient.version>
-        <alibaba.fastjson.version>1.2.75</alibaba.fastjson.version>
-        <swagger.version>3.0.0</swagger.version>
-        <jwt.version>0.9.1</jwt.version>
-        <pinyin4j.version>2.5.0</pinyin4j.version>
-        <org.apache.pdfbox.version>2.0.24</org.apache.pdfbox.version>
-        <commons-io.version>2.11.0</commons-io.version>
-        <org.apache.poi.version>5.0.0</org.apache.poi.version>
-        <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
-        <mysql.drvier.version>8.0.26</mysql.drvier.version>
-        <flywaydb.version>8.0.2</flywaydb.version>
-    </properties>
-
-    <modules>
-        <module>spring-web</module>
-        <module>spring-dal</module>
-        <module>spring-biz</module>
-        <module>spring-common</module>
-    </modules>
-
-
-    <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-        </dependency>
-
-        <!--配置-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- spring-data-elasticsearch -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-        </dependency>
-
-        <!--lombok-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-    </dependencies>
-
-    <build>
-        <resources>
-            <resource>
-                <directory>spring-web/src/main/resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                    </configuration>
-                    <version>${maven.compiler.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven.resources.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.4.6</version>
+    <relativePath/>
+  </parent>
+  <name>spring-boot</name>
+  <groupId>com.soul.rat</groupId>
+  <artifactId>spring-boot</artifactId>
+  <version>1.1.0-beta.0</version>
+  <packaging>pom</packaging>
+  <properties>
+    <project.real.name>spring-boot</project.real.name>
+    <project.real.version>1.0.0</project.real.version>
+    <java.version>8</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.version>3.8.1</maven.compiler.version>
+    <maven.resources.version>3.2.0</maven.resources.version>
+    <apache.commons-lang3.version>3.12.0</apache.commons-lang3.version>
+    <apache.httpclient.version>4.5.13</apache.httpclient.version>
+    <alibaba.fastjson.version>1.2.75</alibaba.fastjson.version>
+    <swagger.version>3.0.0</swagger.version>
+    <jwt.version>0.9.1</jwt.version>
+    <pinyin4j.version>2.5.0</pinyin4j.version>
+    <org.apache.pdfbox.version>2.0.24</org.apache.pdfbox.version>
+    <commons-io.version>2.11.0</commons-io.version>
+    <org.apache.poi.version>5.0.0</org.apache.poi.version>
+    <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
+    <mysql.drvier.version>8.0.26</mysql.drvier.version>
+    <flywaydb.version>8.0.2</flywaydb.version>
+  </properties>
+  <modules>
+    <module>spring-web</module>
+    <module>spring-dal</module>
+    <module>spring-biz</module>
+    <module>spring-common</module>
+  </modules>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+    </dependency>
+    <!--配置-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <!-- spring-data-elasticsearch -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+    </dependency>
+    <!--lombok-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+  </dependencies>
+  <build>
+    <resources>
+      <resource>
+        <directory>spring-web/src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+          </configuration>
+          <version>${maven.compiler.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven.resources.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>
