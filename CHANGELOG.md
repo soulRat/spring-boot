@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0-beta.1](https://github.com/soulRat/spring-boot/compare/v1.1.0-beta.0...v1.1.0-beta.1) (2021-12-30)
+
+
+### Features
+
+* 修改版本记录 ([946875e](https://github.com/soulRat/spring-boot/commit/946875e0781918a1f4ad450c4afedf4bdd9c1e3d))
+* 添加 xmlbuilder2 ([9a803ec](https://github.com/soulRat/spring-boot/commit/9a803ec77d38de9e889e4fcfa00848017faa14cf))
+
 ## [1.1.0-beta.0](https://github.com/soulRat/spring-boot/compare/v1.0.0...v1.1.0-beta.0) (2021-12-30)
 
 
