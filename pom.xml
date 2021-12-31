@@ -32,6 +32,7 @@
     <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
     <mysql.drvier.version>8.0.26</mysql.drvier.version>
     <flywaydb.version>8.0.2</flywaydb.version>
+    <com.aliyun.oss.version>3.10.2</com.aliyun.oss.version>
   </properties>
   <modules>
     <module>spring-web</module>

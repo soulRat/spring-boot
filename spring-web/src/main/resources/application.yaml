@@ -24,6 +24,13 @@ spring:
     virtual-host: /
     username: admin
     password: Ab000000
+  oss:
+    end-point: https://oss-cn-hangzhou.aliyuncs.com
+    access-key-id: #填写子账号密钥id
+    access-key-secret: #填写子账号密钥secret
+    bucket-name: soul-rat
+    file-dir: soul/rat/
+    base-url: https://soul-rat.oss-cn-hangzhou.aliyuncs.com/
 swagger:
   service:
     base-package: 'com.soul.rat.web.controller'
