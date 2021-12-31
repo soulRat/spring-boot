@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/soulRat/spring-boot/compare/v1.1.0...v1.1.1) (2021-12-31)
+
+
+### Bug Fixes
+
+* maven swagger 引包错误 ([46ae4b4](https://github.com/soulRat/spring-boot/commit/46ae4b40eb45261fffc399423585db7f77a5cee0))
+
 ## [1.1.0](https://github.com/soulRat/spring-boot/compare/v1.1.0-beta.2...v1.1.0) (2021-12-30)
 
 ## [1.1.0-beta.2](https://github.com/soulRat/spring-boot/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2021-12-30)
