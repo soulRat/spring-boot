@@ -25,6 +25,10 @@ public class MyUtils {
      * 小写字母
      */
     private static final Pattern PATTERN_LOW = Pattern.compile("^.*[a-z]+.*$");
+
+    /**
+     * 数字
+     */
     private static final Pattern PATTERN_NUM = Pattern.compile("^.*[0-9]+.*$");
 
     /**
@@ -36,6 +40,20 @@ public class MyUtils {
      * 大小写数字
      */
     private static final Pattern SYMBOL = Pattern.compile("^[A-Za-z0-9]+$");
+
+    /**
+     * 校验参数
+     *
+     * @param param 参数
+     * @param msg   错误提示
+     * @author zhujx
+     * @date 2021/12/31 11:49
+     */
+    public static void checkParam(Object param, String msg) {
+        if (isBlank(param)) {
+            throw new RuntimeException(msg);
+        }
+    }
 
     /**
      * 判断参数
@@ -57,18 +75,6 @@ public class MyUtils {
             }
         }
         return isTrue;
-    }
-
-    /**
-     * 判断参数
-     *
-     * @param obj 参数
-     * @return boolean
-     * @author 朱家兴
-     * @date 2019/10/29
-     */
-    public static boolean isNotBlank(Object... obj) {
-        return !isBlank(obj);
     }
 
     /**

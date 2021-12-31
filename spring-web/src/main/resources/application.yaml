@@ -18,6 +18,12 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/ghost?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&useUnicode=true
     username: ghost
     password: 3GJaRKs6JLdfYnLs
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: /
+    username: admin
+    password: Ab000000
 swagger:
   service:
     base-package: 'com.soul.rat.web.controller'
