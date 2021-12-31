@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/soulRat/spring-boot/compare/v1.1.1...v1.2.0) (2021-12-31)
+
+
+### Features
+
+* add ribbit mq ([1815067](https://github.com/soulRat/spring-boot/commit/1815067e7d0a0134aa181513b188491ee3cf4ece))
+
 ### [1.1.1](https://github.com/soulRat/spring-boot/compare/v1.1.0...v1.1.1) (2021-12-31)
 
 

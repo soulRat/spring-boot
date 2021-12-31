@@ -10,7 +10,7 @@
   <name>spring-boot</name>
   <groupId>com.soul.rat</groupId>
   <artifactId>spring-boot</artifactId>
-  <version>1.1.1</version>
+  <version>1.2.0</version>
   <packaging>pom</packaging>
   <properties>
     <project.real.name>spring-boot</project.real.name>
