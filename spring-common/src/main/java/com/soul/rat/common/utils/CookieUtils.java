@@ -1,4 +1,4 @@
-package com.soul.rat.common.api.utils;
+package com.soul.rat.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 

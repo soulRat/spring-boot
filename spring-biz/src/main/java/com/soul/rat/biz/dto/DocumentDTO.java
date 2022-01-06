@@ -17,8 +17,8 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(indexName = "item", shards = 1, replicas = 0)
-public class ItemDTO {
+@Document(indexName = "document",shards = 1, replicas = 0)
+public class DocumentDTO {
 
 
     @Id
@@ -37,19 +37,13 @@ public class ItemDTO {
     private String category;
 
     /**
-     * 品牌
+     * 内容
      */
-    @Field(type = FieldType.Keyword)
-    private String brand;
+    @Field(type = FieldType.Text)
+    private String content;
 
     /**
-     * 价格
-     */
-    @Field(type = FieldType.Double)
-    private Double price;
-
-    /**
-     * 图片地址
+     * 地址
      */
     @Field(index = false, type = FieldType.Keyword)
     private String images;

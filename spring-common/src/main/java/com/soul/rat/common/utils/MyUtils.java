@@ -1,6 +1,8 @@
-package com.soul.rat.common.api.utils;
+package com.soul.rat.common.utils;
 
 
+import com.soul.rat.common.api.BaseBizCodeEnum;
+import com.soul.rat.common.exception.BizException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -51,7 +53,7 @@ public class MyUtils {
      */
     public static void checkParam(Object param, String msg) {
         if (isBlank(param)) {
-            throw new RuntimeException(msg);
+            throw new BizException(BaseBizCodeEnum.FIELD_IS_NULL.getCode(), msg);
         }
     }
 

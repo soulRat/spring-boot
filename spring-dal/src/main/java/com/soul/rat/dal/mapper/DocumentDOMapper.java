@@ -1,18 +1,18 @@
 package com.soul.rat.dal.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.soul.rat.dal.domain.CountDO;
+import com.soul.rat.dal.domain.DocumentDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
- * Mapper 接口
+ * 文档记录 Mapper 接口
  * </p>
  *
  * @author 朱家兴
- * @since 2021-12-17
+ * @since 2022-01-05
  */
 @Mapper
-public interface CountMapper extends BaseMapper<CountDO> {
+public interface DocumentDOMapper extends BaseMapper<DocumentDO> {
 
 }

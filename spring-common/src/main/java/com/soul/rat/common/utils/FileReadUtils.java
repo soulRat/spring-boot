@@ -1,4 +1,4 @@
-package com.soul.rat.common.api.utils;
+package com.soul.rat.common.utils;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -20,6 +20,9 @@ import java.util.List;
  * @date 2021/12/28 11:16
  */
 public class FileReadUtils {
+
+    public final static Object[] DOC_SUFFIX = {"doc", "docx"};
+    public final static Object[] PDF_SUFFIX = {"pdf"};
 
 
     private static InputStream readUrl(String url) throws IOException {
@@ -43,7 +46,6 @@ public class FileReadUtils {
         PDDocument document = PDDocument.load(inputStream);
         PDFTextStripper pdfStripper = new PDFTextStripper();
         String text = pdfStripper.getText(document);
-        inputStream.close();
         return text.trim();
     }
 
@@ -61,12 +63,6 @@ public class FileReadUtils {
         List<XWPFParagraph> paragraphs = doc.getParagraphs();
         StringBuilder stringBuilder = new StringBuilder();
         paragraphs.forEach(o -> stringBuilder.append(o.getText()));
-        inputStream.close();
         return stringBuilder.toString();
-    }
-
-    public static void main(String[] args) throws IOException {
-        String s = pdfReadUrl("http://soul-rat.oss-cn-hangzhou.aliyuncs.com/%E5%B9%BF%E4%B8%9C%E7%9C%81%E5%8C%BB%E7%96%97HIS%E5%AF%B9%E6%8E%A5%E6%96%B9%E6%A1%88.pdf");
-        System.out.println(s);
     }
 }

@@ -1,4 +1,4 @@
-package com.soul.rat.common.api.utils;
+package com.soul.rat.common.utils;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;

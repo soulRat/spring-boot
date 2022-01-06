@@ -30,19 +30,4 @@ public class TestController {
         return "成功";
     }
 
-    @Autowired
-    private OssClientConfig ossClientConfig;
-
-    @PostMapping("/upload/file")
-    public BaseResult<?> uploadFile(@RequestPart("file") MultipartFile file) throws IOException {
-
-        String name = file.getOriginalFilename();
-
-        InputStream inputStream = file.getInputStream();
-
-        String baseUrl = ossClientConfig.addFile(name, inputStream);
-
-        return BaseResult.success().data(baseUrl);
-    }
-
 }

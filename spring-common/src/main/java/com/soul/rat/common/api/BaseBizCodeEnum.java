@@ -14,7 +14,12 @@ public enum BaseBizCodeEnum implements BizCode {
     /**
      * 失败
      */
-    FAILED("-1", "failed"),
+    FAILED("-1000", "failed"),
+
+    /**
+     * 字段为空
+     */
+    FIELD_IS_NULL("-2000", "field is null"),
 
     ;
     private final String code;
