@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/soulRat/spring-boot/compare/v1.4.0...v1.4.1) (2022-01-06)
+
+
+### Bug Fixes
+
+* 结合swagger 修改baseResult ([fdab9f4](https://github.com/soulRat/spring-boot/commit/fdab9f4a5645a72d5e778fb816fb8e715e57f9dc))
+
 ## [1.4.0](https://github.com/soulRat/spring-boot/compare/v1.3.0...v1.4.0) (2022-01-06)
 
 
