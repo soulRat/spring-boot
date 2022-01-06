@@ -2,7 +2,8 @@ package com.soul.rat.web.controller;
 
 
 import com.soul.rat.biz.config.OssClientConfig;
-import com.soul.rat.biz.dto.DocumentDTO;
+import com.soul.rat.biz.model.dto.DocumentDTO;
+import com.soul.rat.biz.model.qo.PageQuery;
 import com.soul.rat.biz.repository.DocumentRepository;
 import com.soul.rat.biz.service.DocumentService;
 import com.soul.rat.common.api.BaseResult;
@@ -10,13 +11,28 @@ import com.soul.rat.common.utils.FileReadUtils;
 import com.soul.rat.common.utils.MyUtils;
 import com.soul.rat.dal.domain.DocumentDO;
 import io.swagger.annotations.ApiOperation;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+import org.elasticsearch.search.sort.FieldSortBuilder;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.core.SearchHit;
+import org.springframework.data.elasticsearch.core.SearchHits;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -40,6 +56,9 @@ public class DocumentController {
 
     @Autowired
     private OssClientConfig ossClientConfig;
+
+    @Autowired
+    private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
     @ApiOperation("上传文件并解析上传es&oss&db")
     @PostMapping("/upload")
@@ -85,6 +104,65 @@ public class DocumentController {
     public BaseResult<?> getOne(long id) {
         DocumentDTO documentDTO = documentRepository.findById(id).orElse(null);
         return BaseResult.success().data(documentDTO);
+    }
+
+
+    @ApiOperation("模糊查询信息")
+    @GetMapping("/page")
+    public BaseResult<?> page(PageQuery pageQuery) {
+        PageRequest pageRequest = PageRequest.of(
+                pageQuery.getPageNum().intValue() - 1,
+                pageQuery.getPageSize().intValue(),
+                Sort.by("id"));
+        Page<DocumentDTO> page = documentRepository.findAll(pageRequest);
+        return BaseResult.success().data(page);
+    }
+
+    @ApiOperation("关键字查询信息")
+    @GetMapping("/pageByKeyword")
+    public BaseResult<?> pageByKeyword(PageQuery pageQuery, String keyword) {
+        // 添加查询字段
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+        boolQueryBuilder.should(QueryBuilders.matchQuery("title", keyword));
+        boolQueryBuilder.should(QueryBuilders.matchQuery("content", keyword));
+
+        // 如需构建高亮查询
+        HighlightBuilder highlightBuilder = new HighlightBuilder();
+        highlightBuilder.preTags("<mark><strong>").postTags("</strong></mark>");
+        highlightBuilder.field("title");
+        highlightBuilder.field("content");
+
+        //构建查询条件
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        //1.排序
+        FieldSortBuilder fieldSortBuilder = SortBuilders.fieldSort("id").order(SortOrder.DESC);
+        //2.分页
+        Pageable pageable = PageRequest.of(pageQuery.getPageNum().intValue() - 1, pageQuery.getPageSize().intValue());
+
+        nativeSearchQueryBuilder.withQuery(boolQueryBuilder);
+        nativeSearchQueryBuilder.withHighlightBuilder(highlightBuilder);
+        nativeSearchQueryBuilder.withSort(fieldSortBuilder);
+        nativeSearchQueryBuilder.withPageable(pageable);
+
+        NativeSearchQuery query = nativeSearchQueryBuilder.build();
+
+        SearchHits<DocumentDTO> search = elasticsearchRestTemplate.search(query, DocumentDTO.class);
+
+
+        List<SearchHit<DocumentDTO>> searchHits = search.getSearchHits();
+
+        List<DocumentDTO> documentList = new ArrayList<>();
+
+        for (SearchHit<DocumentDTO> searchHit : searchHits) {
+            //高亮的内容
+            Map<String, List<String>> highlightFields = searchHit.getHighlightFields();
+            //将高亮的内容填充到content中
+            searchHit.getContent().setTitle(highlightFields.get("title") == null ? searchHit.getContent().getTitle() : highlightFields.get("title").get(0));
+            searchHit.getContent().setContent(highlightFields.get("content") == null ? searchHit.getContent().getContent() : highlightFields.get("content").get(0));
+            //放到实体类中
+            documentList.add(searchHit.getContent());
+        }
+        return BaseResult.success().data(new PageImpl<>(documentList, pageable, search.getTotalHits()));
     }
 
 }

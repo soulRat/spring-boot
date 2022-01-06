@@ -1,4 +1,4 @@
-package com.soul.rat.biz.dto;
+package com.soul.rat.biz.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(indexName = "document",shards = 1, replicas = 0)
+@Document(indexName = "document", replicas = 0)
 public class DocumentDTO {
 
 
@@ -39,7 +39,7 @@ public class DocumentDTO {
     /**
      * 内容
      */
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Text, analyzer = "ik_max_word")
     private String content;
 
     /**
