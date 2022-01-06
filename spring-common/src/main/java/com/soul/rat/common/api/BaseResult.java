@@ -3,87 +3,99 @@ package com.soul.rat.common.api;
 
 import com.alibaba.fastjson.JSONObject;
 
-import java.util.HashMap;
-
 /**
  * 顶级response
  *
  * @author zhujx
  */
-public class BaseResult<T> extends HashMap<String, Object> {
+public class BaseResult<T> {
 
-    public static <T> BaseResult<T> success(T t) {
-        BaseResult<T> success = success();
-        success.put("data", t);
-        return success;
+
+    /**
+     * 状态码
+     */
+    private String code;
+    /**
+     * 提示信息
+     */
+    private String message;
+    /**
+     * 数据封装
+     */
+    private T data;
+
+    public BaseResult() {
+        this.code = BaseBizCodeEnum.SUCCESS.getCode();
+        this.message = BaseBizCodeEnum.SUCCESS.getMessage();
     }
 
-    public static <T> BaseResult<T> success() {
-        return bizCode(BaseBizCodeEnum.SUCCESS);
+    public BaseResult(T data) {
+        this.code = BaseBizCodeEnum.SUCCESS.getCode();
+        this.message = BaseBizCodeEnum.SUCCESS.getMessage();
+        this.data = data;
     }
 
-    public static <T> BaseResult<T> failed() {
-        return bizCode(BaseBizCodeEnum.FAILED);
-    }
-
-    public static <T> BaseResult<T> failed(BizCode bizCode) {
-        return bizCode(bizCode);
-    }
-
-    public static <T> BaseResult<T> failed(String code, String message) {
-        return bizCode(new BizCode() {
-            @Override
-            public String getCode() {
-                return code;
-            }
-
-            @Override
-            public String getMessage() {
-                return message;
-            }
-        });
-    }
-
-
-    private static <T> BaseResult<T> bizCode(BizCode bizCode) {
-        BaseResult<T> result = new BaseResult<>();
-        result.put("code", bizCode.getCode());
-        result.put("message", bizCode.getMessage());
-        return result;
-    }
-
-    public T getData() {
-        Object data = this.get("data");
-        return (T) data;
-    }
-
-    public String getCode() {
-        Object code = this.get("code");
-        return (String) code;
-    }
-
-    public String getMessage() {
-        Object message = this.get("message");
-        return (String) message;
-    }
-
-    public BaseResult<T> and(String key, String value) {
-        this.put(key, value);
+    public BaseResult<T> code(String code) {
+        this.code = code;
         return this;
     }
 
     public BaseResult<T> msg(String message) {
-        this.put("message", message);
+        this.message = message;
         return this;
     }
 
-    public BaseResult<T> code(String code) {
-        this.put("code", code);
+    public BaseResult<T> data(T data) {
+        this.data = data;
         return this;
     }
 
-    public BaseResult<T> data(T t) {
-        this.put("data", t);
+    public String getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public BaseResult<T> success() {
+        this.code = BaseBizCodeEnum.SUCCESS.getCode();
+        this.message = BaseBizCodeEnum.SUCCESS.getMessage();
+        return this;
+    }
+
+    public BaseResult<T> success(T data) {
+        this.code = BaseBizCodeEnum.SUCCESS.getCode();
+        this.message = BaseBizCodeEnum.SUCCESS.getMessage();
+        this.data = data;
+        return this;
+    }
+
+    public BaseResult<T> failed() {
+        this.code = BaseBizCodeEnum.FAILED.getCode();
+        this.message = BaseBizCodeEnum.FAILED.getMessage();
+        return this;
+    }
+
+    public BaseResult<T> failed(String message) {
+        this.code = BaseBizCodeEnum.FAILED.getCode();
+        this.message = message;
+        return this;
+    }
+
+    public BaseResult<T> failed(BizCode bizCode) {
+        this.code = bizCode.getCode();
+        this.message = bizCode.getMessage();
+        return this;
+    }
+
+    public BaseResult<T> failed(String code, String message) {
+        this.code = code;
+        this.message = message;
         return this;
     }
 

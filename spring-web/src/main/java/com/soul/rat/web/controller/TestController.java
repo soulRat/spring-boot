@@ -1,15 +1,12 @@
 package com.soul.rat.web.controller;
 
-import com.soul.rat.biz.config.OssClientConfig;
 import com.soul.rat.biz.config.RabbitMqConfig;
-import com.soul.rat.common.api.BaseResult;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.io.InputStream;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 测试控制器

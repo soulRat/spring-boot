@@ -62,7 +62,8 @@ public class DocumentController {
 
     @ApiOperation("上传文件并解析上传es&oss&db")
     @PostMapping("/upload")
-    public BaseResult<?> uploadFile(@RequestPart("file") MultipartFile file) throws IOException {
+    public BaseResult<String> uploadFile(@RequestPart("file") MultipartFile file) throws IOException {
+        BaseResult<String> baseResult = new BaseResult<>();
 
         String name = file.getOriginalFilename();
 
@@ -79,7 +80,7 @@ public class DocumentController {
         } else if (MyUtils.isEquals(suffix, FileReadUtils.PDF_SUFFIX)) {
             content = FileReadUtils.pdfReadStream(inputStream);
         } else {
-            return BaseResult.failed().msg("暂不支持" + suffix + "格式文件");
+            return baseResult.failed().msg("暂不支持" + suffix + "格式文件");
         }
 
         String baseUrl = ossClientConfig.addFile(name, inputStream);
@@ -96,31 +97,31 @@ public class DocumentController {
 
         documentRepository.save(documentDTO);
 
-        return BaseResult.success().data(baseUrl);
+        return baseResult.success().data(baseUrl);
     }
 
     @ApiOperation("获取信息")
     @GetMapping("/getOne")
-    public BaseResult<?> getOne(long id) {
+    public BaseResult<DocumentDTO> getOne(long id) {
         DocumentDTO documentDTO = documentRepository.findById(id).orElse(null);
-        return BaseResult.success().data(documentDTO);
+        return new BaseResult<>(documentDTO);
     }
 
 
     @ApiOperation("模糊查询信息")
     @GetMapping("/page")
-    public BaseResult<?> page(PageQuery pageQuery) {
+    public BaseResult<Page<DocumentDTO>> page(PageQuery pageQuery) {
         PageRequest pageRequest = PageRequest.of(
                 pageQuery.getPageNum().intValue() - 1,
                 pageQuery.getPageSize().intValue(),
                 Sort.by("id"));
         Page<DocumentDTO> page = documentRepository.findAll(pageRequest);
-        return BaseResult.success().data(page);
+        return new BaseResult<>(page);
     }
 
     @ApiOperation("关键字查询信息")
     @GetMapping("/pageByKeyword")
-    public BaseResult<?> pageByKeyword(PageQuery pageQuery, String keyword) {
+    public BaseResult<Page<DocumentDTO>> pageByKeyword(PageQuery pageQuery, String keyword) {
         // 添加查询字段
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
         boolQueryBuilder.should(QueryBuilders.matchQuery("title", keyword));
@@ -162,7 +163,8 @@ public class DocumentController {
             //放到实体类中
             documentList.add(searchHit.getContent());
         }
-        return BaseResult.success().data(new PageImpl<>(documentList, pageable, search.getTotalHits()));
+        Page<DocumentDTO> data = new PageImpl<>(documentList, pageable, search.getTotalHits());
+        return new BaseResult<>(data);
     }
 
 }
