@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/soulRat/spring-boot/compare/v1.3.0...v1.4.0) (2022-01-06)
+
+
+### Features
+
+* 增加es支持 ik分词器支持 高亮查询支持 ([3719c49](https://github.com/soulRat/spring-boot/commit/3719c4905dfbe8d42ff1ea7794c3847dd0d1f4ee))
+
+
+### Bug Fixes
+
+* 修改flyway版本 ([3596ec2](https://github.com/soulRat/spring-boot/commit/3596ec282983cbc8a9cbc7e7b0c3d74163d070f0))
+* 修改jdk版本 ([b223966](https://github.com/soulRat/spring-boot/commit/b223966503b1b2fe12a4819876948b58fdb9b4a7))
+* 修改文件大小限制 ([55058f9](https://github.com/soulRat/spring-boot/commit/55058f9b17b2750a581610ae07d341b5dcdaa4d5))
+
 ## [1.3.0](https://github.com/soulRat/spring-boot/compare/v1.2.0...v1.3.0) (2021-12-31)
 
 
